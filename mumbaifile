@@ -1,2 +1,22 @@
-this is london
-this is mumbai !!! Good evng!!!
+pipeline{
+    agent any
+    
+    environment{
+        PATH="/opt/maven3/bin:$PATH"
+    }
+    stages{
+        stage("Git Checkout"){
+            steps{
+            git credentialsId: 'github', url: 'https://github.com/kshirod1/mygitrepo.git'
+        }
+    }
+    stage("Maven Build"){
+        steps{
+            sh "mvn clean package"
+        }
+    }
+        
+}
+
+
+}
